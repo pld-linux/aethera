@@ -21,6 +21,7 @@ information: email, contacts, notes, tasks, todos, journals.
 %setup -q
 
 %build
+export QTDIR=/usr
 # Use the new libraries in building process
 export LD_LIBRARY_PATH=$dir/lib:$LD_LIBRARY_PATH
 dir=$(pwd)
@@ -31,9 +32,7 @@ echo > defines.pri
 echo "TKCBASE_LIB="$dir/lib >> defines.pri
 echo "TKCBASE_INCLUDE="$dir/tkcbase >> defines.pri
 echo "CONFIG += release thread" >> defines.pri
-./qmake.sh
-%{__make}
-./qmake.sh
+qmake desktop.pro
 %{__make}
 
 # Compile tkcSSL
@@ -44,9 +43,7 @@ echo "TKCSSL_INCLUDE="$dir/include/tkcssl >> defines.pri
 echo "INCLUDEPATH += "$dir/include/tkcbase >> defines.pri
 echo "DEPENDPATH += "$dir/include/tkcbase >> defines.pri
 echo "CONFIG += release thread" >> defines.pri
-./qmake.sh
-%{__make}
-./qmake.sh
+qmake tkcssl.pro
 %{__make}
 
 # Compile webdav
@@ -55,9 +52,7 @@ echo > defines.pri
 echo "WEBDAV_LIB="$dir/lib/ >> defines.pri
 echo "WEBDAV_INCLUDE="$dir/include/tkcbase >> defines.pri
 echo "CONFIG += release thread" >> defines.pri
-./qmake.sh
-%{__make}
-./qmake.sh
+qmake webdav.pro
 %{__make}
 
 # Compile Aethera
@@ -78,17 +73,13 @@ echo "DEPENDPATH += "$dir/include/tkcssl >> defines.pri
 
 echo "CONFIG += qt warn_on release thread" >> defines.pri
 
-./qmake.sh
-%{__make}
-./qmake.sh
+qmake aethera.pro
 %{__make}
 
 # Compile KOrganizer plugin
 cd ../koplugin
-
 echo > defines.pri
 echo "AETHERA_DIR="$dir/lib >> defines.pri
-
 echo "INCLUDEPATH += "$dir/include >> defines.pri
 echo "INCLUDEPATH += "$dir/include/tkcbase >> defines.pri
 echo "DEPENDPATH += "$dir/include/tkcbase >> defines.pri
@@ -102,13 +93,10 @@ echo "INCLUDEPATH += "$dir/include/aethera/libs/plugins/komcontactsplugin >> def
 echo "DEPENDPATH += "$dir/include/aethera/libs/plugins/komcontactsplugin >> defines.pri
 echo "INCLUDEPATH += "$dir/include/tino >> defines.pri
 echo "DEPENDPATH += "$dir/include/tino >> defines.pri
-
 echo "CONFIG += qt warn_on release thread" >> defines.pri
 echo "DEFINES += AETHERA_KOLAB" >> defines.pri
 
-./qmake.sh
-%{__make}
-./qmake.sh
+qmake KOPlugin.pro
 %{__make}
 
 %install
