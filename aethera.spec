@@ -1,6 +1,6 @@
 %define		_rel	0.1
 Summary:	Aethera - Email and PIM application
-Summary(pl):	Aethera - aplikacja Email i Zarz±dcy Informacji Osobistej (PIM)
+Summary(pl):	Aethera - aplikacja e-mail i zarz±dcy informacji osobistej (PIM)
 Name:		aethera
 Version:	1.2.1
 Release:	050331.%{_rel}
@@ -19,8 +19,8 @@ Aethera is a pim application, i.e. it handles all kinds of personal
 information: email, contacts, notes, tasks, todos, journals.
 
 %description -l pl
-Aethera jest aplikacj± Zarz±dcy Informacji Osobistej (PIM). Obs³uguje
-wszystkie rodzaje informacji osobistych: email, kontakty, notatki,
+Aethera jest aplikacj± zarz±dcy informacji osobistej (PIM). Obs³uguje
+wszystkie rodzaje informacji osobistych: e-mail, kontakty, notatki,
 zadania, sprawy do za³atwienia, dzienniki.
 
 %prep
