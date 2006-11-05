@@ -1,0 +1,17 @@
+--- aethera-1.2.1/koplugin/korganizer/korganizer.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/korganizer/korganizer.pro	2006-11-05 13:41:41.031348020 +0200
+@@ -19,10 +19,10 @@
+ unix {
+ TARGET    = korganizer
+ 
+-INCLUDEPATH += /usr/local/include/aethera/libs/plugins/kommailplugin/
+-DEPENDPATH  += /usr/local/include/aethera/libs/plugins/kommailplugin/
+-INCLUDEPATH += /usr/local/include/aethera/libs/plugins/komcontactsplugin/
+-DEPENDPATH  += /usr/local/include/aethera/libs/plugins/komcontactsplugin/
++INCLUDEPATH += ../../aethera/libs/plugins/kommailplugin
++DEPENDPATH  += ../../aethera/libs/plugins/kommailplugin
++INCLUDEPATH += ../../aethera/libs/plugins/komcontactsplugin
++DEPENDPATH  += ../../aethera/libs/plugins/komcontactsplugin
+ }
+ 
+ HEADERS += \
