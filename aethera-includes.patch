@@ -15,3 +15,40 @@
  }
  
  HEADERS += \
+--- aethera-1.2.1/aethera/libs/protocols/protocols.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/protocols/protocols.pro	2006-11-05 13:47:13.798843081 +0200
+@@ -21,8 +21,8 @@
+ DEPENDPATH  += ../mailparsers
+ INCLUDEPATH += ../plugins/mailfilter
+ DEPENDPATH  += ../plugins/mailfilter
+-INCLUDEPATH += /usr/local/include/tkcssl
+-DEPENDPATH  += /usr/local/include/tkcssl
++INCLUDEPATH += ../../../tkcssl
++DEPENDPATH  += ../../../tkcssl
+ 
+ HEADERS += \
+   accountmanager.h \
+--- aethera-1.2.1/koplugin/libkcal/libkcal.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/libkcal/libkcal.pro	2006-11-05 13:48:20.390342926 +0200
+@@ -72,7 +72,7 @@
+   versit/vcc.c \
+   versit/vobject.c
+ 
+-INCLUDEPATH += /usr/local/include/tkcbase
++INCLUDEPATH += ../../tkcbase
+ 
+ INCLUDEPATH += ../minikde 
+ DEPENDPATH += ../minikde
+--- aethera-1.2.1/koplugin/minikde/minikde.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/minikde/minikde.pro	2006-11-05 13:49:30.991933074 +0200
+@@ -7,8 +7,8 @@
+ DEPENDPATH += .
+ 
+ unix {
+-  INCLUDEPATH += /usr/local/include/webdav/
+-  DEPENDPATH += /usr/local/include/webdav/
++  INCLUDEPATH += ../../webdav/webdav
++  DEPENDPATH += ../../webdav/webdav
+ }
+ 
+ win32 {
