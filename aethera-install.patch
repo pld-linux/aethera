@@ -1,0 +1,121 @@
+--- aethera-1.2.1/tkcbase/desktop.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/tkcbase/desktop.pro	2006-11-05 13:58:44.144398989 +0200
+@@ -51,7 +51,7 @@
+   tkcbase.path     = $$TKCBASE_LIB/
+   tkcbase.files    = $$TKCBASE_LIBRARY
+   tkcbase.extra    = \
+-    cd $$TKCBASE_LIB; \
++    cd $(INSTALL_ROOT)$$TKCBASE_LIB; \
+     rm -f $$TKCBASE_LINK; \
+     ln -s $$TKCBASE_LIBRARY $$TKCBASE_LINK; \
+     rm -f $$TKCBASE_LINK1; \
+--- aethera-1.2.1/tkcssl/tkcssl.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/tkcssl/tkcssl.pro	2006-11-05 14:34:28.882767346 +0200
+@@ -42,7 +42,7 @@
+   tkcssl.path     = $$TKCSSL_LIB/
+   tkcssl.files    = $$TKCSSL_LIBRARY
+   tkcssl.extra    = \
+-    cd $$TKCSSL_LIB; \
++    cd $(INSTALL_ROOT)$$TKCSSL_LIB; \
+     rm -f $$TKCSSL_LINK1; \
+     ln -s $$TKCSSL_LIBRARY $$TKCSSL_LINK1; \
+     rm -f $$TKCSSL_LINK; \
+--- aethera-1.2.1/webdav/modules/filebrowser/filebrowser.pro~	2005-03-22 09:49:16.000000000 +0200
++++ aethera-1.2.1/webdav/modules/filebrowser/filebrowser.pro	2006-11-05 15:57:49.375466786 +0200
+@@ -28,7 +28,7 @@
+ filebrowser.path     = $$WEBDAV_LIB/
+ filebrowser.files    = libfilebrowser.so.1.0.0
+ filebrowser.extra = \
+-  cd $$WEBDAV_LIB; \
++  cd $(INSTALL_ROOT)$$WEBDAV_LIB; \
+   rm -f libfilebrowser.so.1; \
+   ln -s libfilebrowser.so.1.0.0 libfilebrowser.so.1; \
+   rm -f libfilebrowser.so.1.0; \
+--- aethera-1.2.1/aethera/libs/aethera/aethera.pro~	2006-11-05 16:03:09.832694272 +0200
++++ aethera-1.2.1/aethera/libs/aethera/aethera.pro	2006-11-05 16:06:44.167527819 +0200
+@@ -210,7 +210,7 @@
+ aethera.path     = $$AETHERA_LIB/
+ aethera.files    = libaethera.so.1.0.1
+ aethera.extra = \
+-  cd $$AETHERA_LIB; \
++  cd $(INSTALL_ROOT)$$AETHERA_LIB; \
+   rm -f libaethera.so.1; \
+   ln -s libaethera.so.1.0.1 libaethera.so.1; \
+   rm -f libaethera.so; \
+--- aethera-1.2.1/aethera/libs/tino/tino.pro~	2006-11-05 16:02:06.931275685 +0200
++++ aethera-1.2.1/aethera/libs/tino/tino.pro	2006-11-05 16:07:22.898401214 +0200
+@@ -39,7 +39,7 @@
+ tino.path          = $$TINO_LIB/
+ tino.files         = libtino.so.1.0.0
+ tino.extra = \
+-  cd $$TINO_LIB; \
++  cd $(INSTALL_ROOT)$$TINO_LIB; \
+   rm -f libtino.so.1; \
+   ln -s libtino.so.1.0.0 libtino.so.1; \
+   rm -f libtino.so; \
+--- aethera-1.2.1/aethera/libs/plugins/mailimport/mailimport.pro~	2006-11-05 16:09:14.710922558 +0200
++++ aethera-1.2.1/aethera/libs/plugins/mailimport/mailimport.pro	2006-11-05 16:13:29.256661555 +0200
+@@ -66,7 +66,7 @@
+ INSTALLS          += mailimportlib
+ 
+   mailimportlib.extra = \
+-    cd $$AETHERA_DIR/plugins; \
++    cd $(INSTALL_ROOT)$$AETHERA_DIR/plugins; \
+     rm -f libmailimport.so.1.0; \
+     ln -s libmailimport.so.1.0.0 \
+           libmailimport.so.1.0; \
+--- aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro~	2006-11-05 16:14:31.658068135 +0200
++++ aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro	2006-11-05 16:17:49.082518110 +0200
+@@ -98,7 +98,7 @@
+ INSTALLS          += notesplugin
+ 
+   notesplugin.extra = \
+-  cd $$AETHERA_DIR/plugins; \
++  cd $(INSTALL_ROOT)$$AETHERA_DIR/plugins; \
+   rm -f libkomnotesplugin.so.1.0; \
+   ln -s libkomnotesplugin.so.1.0.0 \
+         libkomnotesplugin.so.1.0; \
+--- aethera-1.2.1/aethera/libs/plugins/kommailplugin/kommailplugin.pro~	2006-11-05 16:14:31.658068135 +0200
++++ aethera-1.2.1/aethera/libs/plugins/kommailplugin/kommailplugin.pro	2006-11-05 16:18:25.003327747 +0200
+@@ -162,7 +162,7 @@
+ INSTALLS          += mailplugin
+ 
+   mailplugin.extra = \
+-    cd $$AETHERA_DIR/plugins; \
++    cd $(INSTALL_ROOT)$$AETHERA_DIR/plugins; \
+     rm -f libkommailplugin.so.1.0; \
+     ln -s libkommailplugin.so.1.0.0 \
+           libkommailplugin.so.1.0; \
+--- aethera-1.2.1/aethera/libs/plugins/komcontactsplugin/komcontactsplugin.pro~	2006-11-05 16:14:31.658068135 +0200
++++ aethera-1.2.1/aethera/libs/plugins/komcontactsplugin/komcontactsplugin.pro	2006-11-05 16:19:04.964228438 +0200
+@@ -148,7 +148,7 @@
+ INSTALLS             += contactsplugin
+ 
+   contactsplugin.extra = \
+-  cd $$AETHERA_DIR/plugins; \
++  cd $(INSTALL_ROOT)$$AETHERA_DIR/plugins; \
+   rm -f libkomcontactsplugin.so.1.0; \
+   ln -s libkomcontactsplugin.so.1.0.0 \
+         libkomcontactsplugin.so.1.0; \
+--- aethera-1.2.1/aethera/src/src.pro~	2006-11-05 16:14:31.658068135 +0200
++++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 16:21:35.617623988 +0200
+@@ -125,7 +125,7 @@
+ help.path      = $$AETHERA_DIR/help/
+ help.files     = 
+ help.extra = \
+-  cp -R ../help $$AETHERA_DIR
++  cp -R ../help $(INSTALL_ROOT)$$AETHERA_DIR
+ INSTALLS       += help
+ 
+ aetheraincludes.path    = $$AETHERA_INCLUDE
+--- aethera-1.2.1/koplugin/korganizer/korganizer.pro~	2006-11-05 16:14:31.668068361 +0200
++++ aethera-1.2.1/koplugin/korganizer/korganizer.pro	2006-11-05 16:25:59.493571168 +0200
+@@ -253,7 +253,7 @@
+ INSTALLS       += plugin
+ 
+   plugin.extra = \
+-  cd $$AETHERA_DIR/plugins; \
++  cd $(INSTALL_ROOT)$$AETHERA_DIR/plugins; \
+   rm -f libkorganizer.so.1.0; \
+   ln -s libkorganizer.so.1.0.0 \
+         libkorganizer.so.1.0; \

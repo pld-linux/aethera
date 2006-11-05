@@ -1,10 +1,12 @@
---- aethera-1.2.1/aethera/libs/aethera/aethera.pro~	2005-03-30 12:49:26.000000000 +0300
-+++ aethera-1.2.1/aethera/libs/aethera/aethera.pro	2006-11-05 12:51:16.383158489 +0200
-@@ -205,7 +205,7 @@
+--- aethera-1.2.1/aethera/libs/aethera/aethera.pro	2006-11-05 12:51:16.383158489 +0200
++++ aethera-1.2.1/aethera/libs/aethera/aethera.pro	2006-11-05 16:03:09.832694272 +0200
+@@ -204,8 +204,8 @@
+ 
  unix {
  LIBS    += -L../tino -ltino
- LIBS    += -L$$AETHERA_LIB -ltkcbase
+-LIBS    += -L$$AETHERA_LIB -ltkcbase
 -LIBS    += -L/usr/local/lib -lkore 
++LIBS    += -L../../../tkcbase -ltkcbase
 +LIBS    += -lkore 
  
  aethera.path     = $$AETHERA_LIB/
@@ -75,15 +77,15 @@
  
  tino.path          = $$TINO_LIB/
  tino.files         = libtino.so.1.0.0
---- aethera-1.2.1/aethera/src/src.pro	2006-11-05 12:56:12.959852735 +0200
-+++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 13:17:47.829052630 +0200
+--- aethera-1.2.1/aethera/src/src.pro	2006-11-05 13:17:47.829052630 +0200
++++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 16:04:54.945064749 +0200
 @@ -88,8 +88,8 @@
  
  LIBS  += -L../libs/aethera -laethera
  LIBS  += -L../libs/tino -ltino
 -LIBS  += -L$$AETHERA_LIB -ltkcbase -ltkcssl
 -LIBS  += -L/usr/local/lib -lkore
-+LIBS  += -L$$AETHERA_LIB -ltkcbase -L../../tkcssl -ltkcssl
++LIBS  += -L../../tkcbase -ltkcbase -L../../tkcssl -ltkcssl
 +LIBS  += -lkore
  
  # Installing...
