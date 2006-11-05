@@ -42,14 +42,14 @@
    
  mailplugin.path    = $$AETHERA_DIR/plugins/
  mailplugin.files   = lib*.so.1.0.0
---- aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro~	2005-03-30 12:49:26.000000000 +0300
-+++ aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro	2006-11-05 12:55:00.328213427 +0200
+--- aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro	2006-11-05 12:55:00.328213427 +0200
++++ aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro	2006-11-05 13:20:01.422063570 +0200
 @@ -87,7 +87,7 @@
  }
  
  unix {
 -  LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
-+  LIBS  += -L../../aethera -L../../tino -laethera -lkore -ltino -ltkcbase
++  LIBS  += -L../../aethera -L../../tino -L../../../../tkcbase -laethera -lkore -ltino -ltkcbase
    
  language.path  = $$AETHERA_DIR/plugins/
  language.files = notes_language/ 
