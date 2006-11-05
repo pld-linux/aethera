@@ -1,0 +1,11 @@
+--- aethera-1.2.1/webdav/webdav/webdav.pro~	2006-11-05 16:56:11.000000000 +0200
++++ aethera-1.2.1/webdav/webdav/webdav.pro	2006-11-05 16:56:13.000000000 +0200
+@@ -6,6 +6,8 @@
+ 
+ unix {
+     VERSION = 1.0.0
++	QMAKE_CXXFLAGS = -DPIC -fPIC
++	QMAKE_CFLAGS = -DPIC -fPIC
+ }
+ 
+ INCLUDEPATH += .
