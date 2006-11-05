@@ -40,7 +40,9 @@ Header files for Aethera library.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%ifarch %{x8664}
 %patch3 -p1
+%endif
 
 mkdir -p include/aethera
 ln -sf ../../aethera/libs/clientskel/clientrmi.h include/aethera
