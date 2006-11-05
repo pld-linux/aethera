@@ -165,19 +165,34 @@ export QTDIR=/usr
 %{__make} -C koplugin install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
+# x86 binary
+rm $RPM_BUILD_ROOT%{_libdir}/aethera/bin/sox
+# unneccessary wrappers
+rm $RPM_BUILD_ROOT%{_libdir}/aethera/bin/aethera_sound
+rm $RPM_BUILD_ROOT%{_prefix}/local/bin/aethera
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p	/sbin/ldconfig
+%postun	-p	/sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/aethera
-%dir %attr(755,root,root) %{_libdir}/aethera
-%dir %attr(755,root,root) %{_libdir}/aethera/plugins
+%attr(755,root,root) %{_libdir}/libaethera.so.1.0.1
+%attr(755,root,root) %{_libdir}/libfilebrowser.so.1.0.0
+%attr(755,root,root) %{_libdir}/libtino.so.1.0.0
+%attr(755,root,root) %{_libdir}/libtkcbase.so.1.0.0
+%attr(755,root,root) %{_libdir}/libtkcssl.so.1.0.0
+%dir %{_libdir}/aethera
+%dir %{_libdir}/aethera/plugins
+%attr(755,root,root) %{_libdir}/aethera/plugins/libhomeplugin.so.1.0.0
+%attr(755,root,root) %{_libdir}/aethera/plugins/libkomcontactsplugin.so.1.0.0
 %attr(755,root,root) %{_libdir}/aethera/plugins/libkommailplugin.so.1.0.0
 %attr(755,root,root) %{_libdir}/aethera/plugins/libkomnotesplugin.so.1.0.0
 %attr(755,root,root) %{_libdir}/aethera/plugins/libkorganizer.so.1.0.0
-%attr(755,root,root) %{_libdir}/aethera/plugins/libkomcontactsplugin.so.1.0.0
-%dir %{_libdir}/aethera
+%attr(755,root,root) %{_libdir}/aethera/plugins/libmailimport.so.1.0.0
 %{_libdir}/aethera/help
 %{_libdir}/aethera/pics
 %{_libdir}/aethera/sound
@@ -206,6 +221,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%{_libdir}/libtkwidgets.a
+%{_libdir}/libwebdav.a
 %{_includedir}/aethera
 %{_includedir}/tino
 %{_includedir}/tkcbase
