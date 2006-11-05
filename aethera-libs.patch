@@ -1,0 +1,88 @@
+--- aethera-1.2.1/aethera/libs/aethera/aethera.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/aethera/aethera.pro	2006-11-05 12:51:16.383158489 +0200
+@@ -205,7 +205,7 @@
+ unix {
+ LIBS    += -L../tino -ltino
+ LIBS    += -L$$AETHERA_LIB -ltkcbase
+-LIBS    += -L/usr/local/lib -lkore 
++LIBS    += -lkore 
+ 
+ aethera.path     = $$AETHERA_LIB/
+ aethera.files    = libaethera.so.1.0.1
+--- aethera-1.2.1/aethera/libs/plugins/homeplugin/homeplugin.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/plugins/homeplugin/homeplugin.pro	2006-11-05 12:53:27.326114248 +0200
+@@ -65,7 +65,7 @@
+ }
+ 
+ unix {
+-LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
++LIBS  += -L../../aethera -L../../tino -L../../../../tkcbase -laethera -lkore -ltino -ltkcbase
+ 
+ homeplugin.path   = $$AETHERA_DIR/plugins/
+ homeplugin.files  = lib*.so.1.0.0
+--- aethera-1.2.1/aethera/libs/plugins/komcontactsplugin/komcontactsplugin.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/plugins/komcontactsplugin/komcontactsplugin.pro	2006-11-05 12:54:06.536999303 +0200
+@@ -141,7 +141,7 @@
+ }
+ 
+ unix {
+-  LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
++  LIBS  += -L../../aethera -L../../tino -laethera -lkore -ltino -ltkcbase
+   
+ contactsplugin.path   = $$AETHERA_DIR/plugins/
+ contactsplugin.files  = lib*.so.1.0.0
+--- aethera-1.2.1/aethera/libs/plugins/kommailplugin/kommailplugin.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/plugins/kommailplugin/kommailplugin.pro	2006-11-05 12:54:36.587677583 +0200
+@@ -155,7 +155,7 @@
+ }
+ 
+ unix {
+-  LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
++  LIBS  += -L../../aethera -L../../tino -laethera -lkore -ltino -ltkcbase
+   
+ mailplugin.path    = $$AETHERA_DIR/plugins/
+ mailplugin.files   = lib*.so.1.0.0
+--- aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/plugins/komnotesplugin/komnotesplugin.pro	2006-11-05 12:55:00.328213427 +0200
+@@ -87,7 +87,7 @@
+ }
+ 
+ unix {
+-  LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
++  LIBS  += -L../../aethera -L../../tino -laethera -lkore -ltino -ltkcbase
+   
+ language.path  = $$AETHERA_DIR/plugins/
+ language.files = notes_language/ 
+--- aethera-1.2.1/aethera/libs/plugins/mailimport/mailimport.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/plugins/mailimport/mailimport.pro	2006-11-05 12:55:24.628761902 +0200
+@@ -59,7 +59,7 @@
+ }
+ 
+ unix {
+-  LIBS  += -L../../aethera -L../../tino -L/usr/local/lib -laethera -lkore -ltino -ltkcbase
++  LIBS  += -L../../aethera -L../../tino -laethera -lkore -ltino -ltkcbase
+   
+ mailimportlib.path    = $$AETHERA_DIR/plugins/
+ mailimportlib.files   = lib*.so.1.0.0
+--- aethera-1.2.1/aethera/libs/tino/tino.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/tino/tino.pro	2006-11-05 12:55:43.149179912 +0200
+@@ -34,7 +34,7 @@
+   MOC_DIR = .tmp
+   OBJECTS_DIR = .tmp
+ 
+-LIBS          += -L/usr/local/lib -lkore
++LIBS          += -lkore
+ 
+ tino.path          = $$TINO_LIB/
+ tino.files         = libtino.so.1.0.0
+--- aethera-1.2.1/aethera/src/src.pro~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 12:56:12.959852735 +0200
+@@ -89,7 +89,7 @@
+ LIBS  += -L../libs/aethera -laethera
+ LIBS  += -L../libs/tino -ltino
+ LIBS  += -L$$AETHERA_LIB -ltkcbase -ltkcssl
+-LIBS  += -L/usr/local/lib -lkore
++LIBS  += -lkore
+ 
+ # Installing...
+ 
