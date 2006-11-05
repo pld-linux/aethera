@@ -54,7 +54,6 @@ dir=$(pwd)
 
 # Compile tkcBase
 cd tkcbase
-%if 0
 cat <<EOF > defines.pri
 TKCBASE_LIB=%{_libdir}
 TKCBASE_INCLUDE=%{_includedir}/tkcbase
@@ -105,7 +104,6 @@ EOF
 
 qmake aethera.pro
 %{__make}
-%endif
 
 # Compile KOrganizer plugin
 cd ../koplugin
