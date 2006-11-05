@@ -1,4 +1,4 @@
-%define		_rel	0.2
+%define		_rel	0.3
 Summary:	Aethera - Email and PIM application
 Summary(pl):	Aethera - aplikacja e-mail i zarz±dcy informacji osobistej (PIM)
 Name:		aethera
@@ -11,6 +11,7 @@ Patch0:		%{name}-libs.patch
 Patch1:		%{name}-includes.patch
 Patch2:		%{name}-install.patch
 Patch3:		%{name}-fpic.patch
+Patch4:		%{name}-typo.patch
 # Source0-md5:	f3efd064b5e9884bd7adf49bf763e213
 URL:		http://www.thekompany.com/projects/aethera/
 BuildRequires:	korelib-devel
@@ -43,6 +44,7 @@ Header files for Aethera library.
 %ifarch %{x8664}
 %patch3 -p1
 %endif
+%patch4 -p1
 
 mkdir -p include/aethera
 ln -sf ../../aethera/libs/clientskel/clientrmi.h include/aethera
