@@ -88,3 +88,14 @@
  
  # Installing...
  
+--- aethera-1.2.1/koplugin/korganizer/korganizer.pro~	2006-11-05 13:50:58.183896878 +0200
++++ aethera-1.2.1/koplugin/korganizer/korganizer.pro	2006-11-05 13:50:59.533927284 +0200
+@@ -234,7 +234,7 @@
+ LIBS += ../libkpimexchange/libkpimexchange.a
+ LIBS += ../libkcal/libkcal.a
+ LIBS += ../minikde/libminikde.a 
+-LIBS += /usr/local/lib/libwebdav.a
++LIBS += ../../webdav/webdav/libwebdav.a
+ LIBS += ../libical/src/libicalss/libicalss.a
+ LIBS += ../libical/src/libical/libical.a
+ 
