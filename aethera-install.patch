@@ -97,8 +97,17 @@
    rm -f libkomcontactsplugin.so.1.0; \
    ln -s libkomcontactsplugin.so.1.0.0 \
          libkomcontactsplugin.so.1.0; \
---- aethera-1.2.1/aethera/src/src.pro~	2006-11-05 16:14:31.658068135 +0200
-+++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 16:21:35.617623988 +0200
+--- aethera-1.2.1/aethera/src/src.pro	2006-11-05 16:21:35.617623988 +0200
++++ aethera-1.2.1/aethera/src/src.pro	2006-11-05 16:36:23.967632195 +0200
+@@ -4,7 +4,7 @@
+ CONFIG   += qt
+ 
+ unix {
+-TARGET = aethera.bin
++TARGET = aethera
+ }
+ 
+ win32{
 @@ -125,7 +125,7 @@
  help.path      = $$AETHERA_DIR/help/
  help.files     = 
