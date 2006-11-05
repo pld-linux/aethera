@@ -9,6 +9,7 @@ Group:		X11/Applications
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-libs.patch
 Patch1:		%{name}-includes.patch
+Patch2:		%{name}-install.patch
 # Source0-md5:	f3efd064b5e9884bd7adf49bf763e213
 URL:		http://www.thekompany.com/projects/aethera/
 BuildRequires:	korelib-devel
@@ -25,105 +26,131 @@ Aethera jest aplikacj± zarz±dcy informacji osobistej (PIM). Obs³uguje
 wszystkie rodzaje informacji osobistych: e-mail, kontakty, notatki,
 zadania, sprawy do za³atwienia, dzienniki.
 
+%package devel
+Summary:	Header files for Aethera
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Header files for Aethera library.
+
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
-%build
-export QTDIR=/usr
-# Use the new libraries in building process
-export LD_LIBRARY_PATH=$dir/lib:$LD_LIBRARY_PATH
-dir=$(pwd)
-
+%patch2 -p1
 
 mkdir -p include/aethera
 ln -sf ../../aethera/libs/clientskel/clientrmi.h include/aethera
 ln -sf ../../aethera/libs/clientskel/vfsmodule.h include/aethera
 
+%build
+export QTDIR=/usr
+export QMAKE_STRIP=:
+
+# Use the new libraries in building process
+export LD_LIBRARY_PATH=$dir/lib:$LD_LIBRARY_PATH
+dir=$(pwd)
+
 # Compile tkcBase
 cd tkcbase
-echo > defines.pri
-echo "TKCBASE_LIB="$dir/lib >> defines.pri
-echo "TKCBASE_INCLUDE="$dir/tkcbase >> defines.pri
-echo "CONFIG += release thread" >> defines.pri
+%if 0
+cat <<EOF > defines.pri
+TKCBASE_LIB=%{_libdir}
+TKCBASE_INCLUDE=%{_includedir}/tkcbase
+CONFIG += release thread
+EOF
 qmake desktop.pro
 %{__make}
 
 # Compile tkcSSL
 cd ../tkcssl
-echo > defines.pri
-echo "TKCSSL_LIB="$dir/lib >> defines.pri
-echo "TKCSSL_INCLUDE="$dir/tkcssl >> defines.pri
-echo "INCLUDEPATH += "$dir/tkcbase >> defines.pri
-echo "DEPENDPATH += "$dir/tkcbase >> defines.pri
-echo "CONFIG += release thread" >> defines.pri
+cat <<EOF > defines.pri
+TKCSSL_LIB=%{_libdir}
+TKCSSL_INCLUDE=%{_includedir}/tkcssl
+INCLUDEPATH += $dir/tkcbase
+DEPENDPATH += $dir/tkcbase
+CONFIG += release thread
+EOF
 qmake tkcssl.pro
 %{__make}
 
 # Compile webdav
 cd ../webdav
-echo > defines.pri
-echo "WEBDAV_LIB="$dir/lib/ >> defines.pri
-echo "WEBDAV_INCLUDE="$dir/tkcbase >> defines.pri
-echo "CONFIG += release thread" >> defines.pri
+cat <<EOF > defines.pri
+WEBDAV_LIB=%{_libdir}
+WEBDAV_INCLUDE=%{_includedir}/tkcbase
+CONFIG += release thread
+EOF
 qmake webdav.pro
 %{__make}
 
 # Compile Aethera
 cd ../aethera
-echo > defines.pri
-echo "AETHERA_DIR="$dir/lib/theKompany/Aethera >> defines.pri
-echo "AETHERA_BIN="$dir/bin >> defines.pri
-echo "AETHERA_LIB="$dir/tkcbase >> defines.pri
-echo "AETHERA_INCLUDE="$dir/include/aethera/ >> defines.pri
-echo "AETHERA_INCLUDES="$dir/include/aethera/ >> defines.pri
-echo "TINO_LIB="$dir/lib/lib >> defines.pri
-echo "TINO_INCLUDE="$dir/include/tino >> defines.pri
-echo "INCLUDEPATH += "$dir/include >> defines.pri
-echo "INCLUDEPATH += "$dir/tkcbase >> defines.pri
-echo "DEPENDPATH += "$dir/tkcbase >> defines.pri
-echo "INCLUDEPATH += "$dir/tkcssl >> defines.pri
-echo "DEPENDPATH += "$dir/tkcssl >> defines.pri
+cat <<EOF > defines.pri
+AETHERA_DIR=%{_libdir}/aethera
+AETHERA_BIN=%{_bindir}
+AETHERA_LIB=%{_libdir}
+AETHERA_INCLUDE=%{_includedir}/aethera
+TINO_LIB=%{_libdir}
+TINO_INCLUDE=%{_includedir}/tino
+INCLUDEPATH += $dir/include
+INCLUDEPATH += $dir/tkcbase
+DEPENDPATH += $dir/tkcbase
+INCLUDEPATH += $dir/tkcssl
+DEPENDPATH += $dir/tkcssl
 
-echo "CONFIG += qt warn_on release thread" >> defines.pri
+CONFIG += qt warn_on release thread
+EOF
 
 qmake aethera.pro
 %{__make}
+%endif
 
 # Compile KOrganizer plugin
 cd ../koplugin
-echo > defines.pri
-echo "AETHERA_DIR="$dir/lib >> defines.pri
-echo "INCLUDEPATH += "$dir/include >> defines.pri
-echo "INCLUDEPATH += "$dir/tkcbase >> defines.pri
-echo "DEPENDPATH += "$dir/tkcbase >> defines.pri
-echo "INCLUDEPATH += "$dir/tkcssl >> defines.pri
-echo "DEPENDPATH += "$dir/tkcssl >> defines.pri
-echo "INCLUDEPATH += "$dir/aethera/libs >> defines.pri
-echo "DEPENDPATH += "$dir/aethera/libs >> defines.pri
-echo "INCLUDEPATH += "$dir/aethera/libs/aethera >> defines.pri
-echo "DEPENDPATH += "$dir/aethera/libs/aethera >> defines.pri
-echo "INCLUDEPATH += "$direbdav/webdav >> defines.pri
-echo "DEPENDPATH += "$dir/webdav/webdav >> defines.pri
-echo "INCLUDEPATH += "$dir/aethera/libs/clientskel >> defines.pri
-echo "DEPENDPATH += "$dir/aethera/libs/clientskel >> defines.pri
+cat <<EOF > defines.pri
+AETHERA_DIR = %{_libdir}/aethera
 
-echo "INCLUDEPATH += "$dir/include/aethera/libs/plugins/kommailplugin >> defines.pri
-echo "DEPENDPATH += "$dir/include/aethera/libs/plugins/kommailplugin >> defines.pri
-echo "INCLUDEPATH += "$dir/include/aethera/libs/plugins/komcontactsplugin >> defines.pri
-echo "DEPENDPATH += "$dir/include/aethera/libs/plugins/komcontactsplugin >> defines.pri
-echo "INCLUDEPATH += "$dir/include/tino >> defines.pri
-echo "DEPENDPATH += "$dir/include/tino >> defines.pri
+INCLUDEPATH += $dir/include
+INCLUDEPATH += $dir/tkcbase
+DEPENDPATH += $dir/tkcbase
 
-echo "CONFIG += qt warn_on release thread" >> defines.pri
-echo "DEFINES += AETHERA_KOLAB" >> defines.pri
+INCLUDEPATH += $dir/tkcssl
+DEPENDPATH += $dir/tkcssl
+
+INCLUDEPATH += $dir/aethera/libs
+DEPENDPATH += $dir/aethera/libs
+
+INCLUDEPATH += $dir/aethera/libs/aethera
+DEPENDPATH += $dir/aethera/libs/aethera
+
+INCLUDEPATH += $direbdav/webdav
+DEPENDPATH += $dir/webdav/webdav
+
+INCLUDEPATH += $dir/aethera/libs/clientskel
+DEPENDPATH += $dir/aethera/libs/clientskel
+
+INCLUDEPATH += $dir/include/aethera/libs/plugins/kommailplugin
+DEPENDPATH += $dir/include/aethera/libs/plugins/kommailplugin
+
+INCLUDEPATH += $dir/include/aethera/libs/plugins/komcontactsplugin
+DEPENDPATH += $dir/include/aethera/libs/plugins/komcontactsplugin
+
+INCLUDEPATH += $dir/include/tino
+DEPENDPATH += $dir/include/tino
+
+CONFIG += qt warn_on release thread
+DEFINES += AETHERA_KOLAB
+EOF
 
 qmake KOPlugin.pro
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_libdir}/aethera
+
 export QTDIR=/usr
 %{__make} -C tkcbase install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
@@ -133,9 +160,51 @@ export QTDIR=/usr
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 %{__make} -C aethera install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
+%{__make} -C koplugin install \
+	INSTALL_ROOT=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/aethera
+%dir %attr(755,root,root) %{_libdir}/aethera
+%dir %attr(755,root,root) %{_libdir}/aethera/plugins
+%attr(755,root,root) %{_libdir}/aethera/plugins/libkommailplugin.so.1.0.0
+%attr(755,root,root) %{_libdir}/aethera/plugins/libkomnotesplugin.so.1.0.0
+%attr(755,root,root) %{_libdir}/aethera/plugins/libkorganizer.so.1.0.0
+%attr(755,root,root) %{_libdir}/aethera/plugins/libkomcontactsplugin.so.1.0.0
+%dir %{_libdir}/aethera
+%{_libdir}/aethera/help
+%{_libdir}/aethera/pics
+%{_libdir}/aethera/sound
+%{_libdir}/aethera/data
+%dir %{_libdir}/aethera/i18n
+%lang(de) %{_libdir}/aethera/i18n/aethera_de.qm
+%lang(de) %{_libdir}/aethera/i18n/aethera_de.ts
+%lang(de) %{_libdir}/aethera/i18n/koplugin_de.ts
+%lang(en) %{_libdir}/aethera/i18n/aethera_en.ts
+%lang(en) %{_libdir}/aethera/i18n/koplugin_en.ts
+%lang(fr) %{_libdir}/aethera/i18n/aethera_fr.qm
+%lang(fr) %{_libdir}/aethera/i18n/aethera_fr.ts
+%lang(fr) %{_libdir}/aethera/i18n/koplugin_fr.qm
+%lang(fr) %{_libdir}/aethera/i18n/koplugin_fr.ts
+%lang(pt) %{_libdir}/aethera/i18n/aethera_pt.qm
+%lang(pt) %{_libdir}/aethera/i18n/aethera_pt.ts
+%lang(pt) %{_libdir}/aethera/i18n/koplugin_pt.qm
+%lang(pt) %{_libdir}/aethera/i18n/koplugin_pt.ts
+%lang(pt) %{_libdir}/aethera/i18n/qt_pt.qm
+%lang(pt) %{_libdir}/aethera/i18n/qt_pt.ts
+%lang(ru) %{_libdir}/aethera/i18n/aethera_ru.qm
+%lang(ru) %{_libdir}/aethera/i18n/aethera_ru.ts
+%{_desktopdir}/aethera.desktop
+%{_iconsdir}/hicolor/*/apps/aethera.png
+%{_pixmapsdir}/*.png
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/aethera
+%{_includedir}/tino
+%{_includedir}/tkcbase
+%{_includedir}/tkcssl
