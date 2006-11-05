@@ -1,0 +1,11 @@
+--- aethera-1.2.1/aethera/libs/setupwizard/setupwizard.cpp~	2005-03-30 12:49:26.000000000 +0300
++++ aethera-1.2.1/aethera/libs/setupwizard/setupwizard.cpp	2006-11-05 18:11:24.000000000 +0200
+@@ -197,7 +197,7 @@
+       tr
+       (
+         "<qt>"
+-        "<p>Thankyou for providing the information needed to get started.</p>"
++        "<p>Thank you for providing the information needed to get started.</p>"
+         "<p>Have fun using %1</p>"
+         "</qt>"
+       ).arg(FullAppName),
