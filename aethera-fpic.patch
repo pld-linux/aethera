@@ -9,3 +9,66 @@
  }
  
  INCLUDEPATH += .
+--- aethera-1.2.1/koplugin/libkpimexchange/libkpimexchange.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/libkpimexchange/libkpimexchange.pro	2006-11-05 17:32:12.000000000 +0200
+@@ -3,6 +3,10 @@
+ TEMPLATE = lib
+ TARGET = kpimexchange
+ CONFIG += staticlib
++unix {
++	QMAKE_CXXFLAGS = -DPIC -fPIC
++	QMAKE_CFLAGS = -DPIC -fPIC
++}
+ 
+ MOC_DIR = .MOC
+ OBJECTS_DIR = .OBJ
+--- aethera-1.2.1/koplugin/libkcal/libkcal.pro~	2006-11-05 16:44:15.000000000 +0200
++++ aethera-1.2.1/koplugin/libkcal/libkcal.pro	2006-11-05 17:34:19.000000000 +0200
+@@ -5,6 +5,10 @@
+ TARGET    = kcal
+ 
+ CONFIG    += staticlib
++unix {
++	QMAKE_CXXFLAGS = -DPIC -fPIC
++	QMAKE_CFLAGS = -DPIC -fPIC
++}
+ 
+ HEADERS   = \
+   alarm.h \
+--- aethera-1.2.1/koplugin/minikde/minikde.pro~	2006-11-05 16:44:15.000000000 +0200
++++ aethera-1.2.1/koplugin/minikde/minikde.pro	2006-11-05 17:42:15.000000000 +0200
+@@ -9,6 +9,8 @@
+ unix {
+   INCLUDEPATH += ../../webdav/webdav
+   DEPENDPATH += ../../webdav/webdav
++  QMAKE_CXXFLAGS = -DPIC -fPIC
++  QMAKE_CFLAGS = -DPIC -fPIC
+ }
+ 
+ win32 {
+--- aethera-1.2.1/koplugin/libical/src/libicalss/libicalss.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/libical/src/libicalss/libicalss.pro	2006-11-05 17:53:11.000000000 +0200
+@@ -5,6 +5,10 @@
+ TARGET          = icalss
+ 
+ CONFIG		+= staticlib
++unix {
++	QMAKE_CXXFLAGS = -DPIC -fPIC
++	QMAKE_CFLAGS = -DPIC -fPIC
++}
+ 
+ HEADERS		= icalcalendar.h \
+ 		  icalclassify.h \
+--- aethera-1.2.1/koplugin/libical/src/libical/libical.pro~	2005-03-30 12:49:27.000000000 +0300
++++ aethera-1.2.1/koplugin/libical/src/libical/libical.pro	2006-11-05 17:54:06.000000000 +0200
+@@ -5,6 +5,10 @@
+ TARGET          = ical
+ 
+ CONFIG		+= staticlib
++unix {
++	QMAKE_CXXFLAGS = -DPIC -fPIC
++	QMAKE_CFLAGS = -DPIC -fPIC
++}
+ 
+ HEADERS		= \
+ 		  icalattendee.h \
