@@ -1,6 +1,7 @@
+# TODO: optflags
 %define		_rel	0.3
 Summary:	Aethera - Email and PIM application
-Summary(pl):	Aethera - aplikacja e-mail i zarz±dcy informacji osobistej (PIM)
+Summary(pl):	Aethera - aplikacja poczty elektronicznej i zarz±dcy informacji osobistej (PIM)
 Name:		aethera
 Version:	1.2.1
 Release:	050331.%{_rel}
@@ -15,6 +16,7 @@ Patch4:		%{name}-typo.patch
 # Source0-md5:	f3efd064b5e9884bd7adf49bf763e213
 URL:		http://www.thekompany.com/projects/aethera/
 BuildRequires:	korelib-devel
+BuildRequires:	qmake
 BuildRequires:	qt-devel
 #Requires: thekompany-support
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,16 +27,20 @@ information: email, contacts, notes, tasks, todos, journals.
 
 %description -l pl
 Aethera jest aplikacj± zarz±dcy informacji osobistej (PIM). Obs³uguje
-wszystkie rodzaje informacji osobistych: e-mail, kontakty, notatki,
-zadania, sprawy do za³atwienia, dzienniki.
+wszystkie rodzaje informacji osobistych: pocztê elektroniczn±,
+kontakty, notatki, zadania, sprawy do za³atwienia, dzienniki.
 
 %package devel
-Summary:	Header files for Aethera
+Summary:	Header files for Aethera libraries
+Summary(pl):	Pliki nag³ówkowe bibliotek Aethery
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files for Aethera library.
+Header files for Aethera libraries.
+
+%description devel -l pl
+Pliki nag³ówkowe bibliotek Aethery.
 
 %prep
 %setup -q
@@ -176,8 +182,8 @@ rm $RPM_BUILD_ROOT%{_prefix}/local/bin/aethera
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/ldconfig
-%postun	-p	/sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -200,6 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/aethera/sound
 %{_libdir}/aethera/data
 %dir %{_libdir}/aethera/i18n
+# XXX: are *.ts (translation sources) needed in binary package?
 %lang(de) %{_libdir}/aethera/i18n/aethera_de.qm
 %lang(de) %{_libdir}/aethera/i18n/aethera_de.ts
 %lang(de) %{_libdir}/aethera/i18n/koplugin_de.ts
