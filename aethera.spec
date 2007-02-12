@@ -1,7 +1,7 @@
 # TODO: optflags
 %define		_rel	0.3
 Summary:	Aethera - Email and PIM application
-Summary(pl):	Aethera - aplikacja poczty elektronicznej i zarz±dcy informacji osobistej (PIM)
+Summary(pl.UTF-8):   Aethera - aplikacja poczty elektronicznej i zarzÄ…dcy informacji osobistej (PIM)
 Name:		aethera
 Version:	1.2.1
 Release:	050331.%{_rel}
@@ -25,22 +25,22 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Aethera is a pim application, i.e. it handles all kinds of personal
 information: email, contacts, notes, tasks, todos, journals.
 
-%description -l pl
-Aethera jest aplikacj± zarz±dcy informacji osobistej (PIM). Obs³uguje
-wszystkie rodzaje informacji osobistych: pocztê elektroniczn±,
-kontakty, notatki, zadania, sprawy do za³atwienia, dzienniki.
+%description -l pl.UTF-8
+Aethera jest aplikacjÄ… zarzÄ…dcy informacji osobistej (PIM). ObsÅ‚uguje
+wszystkie rodzaje informacji osobistych: pocztÄ™ elektronicznÄ…,
+kontakty, notatki, zadania, sprawy do zaÅ‚atwienia, dzienniki.
 
 %package devel
 Summary:	Header files for Aethera libraries
-Summary(pl):	Pliki nag³ówkowe bibliotek Aethery
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe bibliotek Aethery
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for Aethera libraries.
 
-%description devel -l pl
-Pliki nag³ówkowe bibliotek Aethery.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe bibliotek Aethery.
 
 %prep
 %setup -q
