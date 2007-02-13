@@ -1,7 +1,7 @@
 # TODO: optflags
 %define		_rel	0.3
 Summary:	Aethera - Email and PIM application
-Summary(pl.UTF-8):   Aethera - aplikacja poczty elektronicznej i zarządcy informacji osobistej (PIM)
+Summary(pl.UTF-8):	Aethera - aplikacja poczty elektronicznej i zarządcy informacji osobistej (PIM)
 Name:		aethera
 Version:	1.2.1
 Release:	050331.%{_rel}
@@ -32,7 +32,7 @@ kontakty, notatki, zadania, sprawy do załatwienia, dzienniki.
 
 %package devel
 Summary:	Header files for Aethera libraries
-Summary(pl.UTF-8):   Pliki nagłówkowe bibliotek Aethery
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Aethery
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
